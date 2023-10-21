@@ -1,14 +1,29 @@
-name: Churn vs Complexity Analysis
+name: Churn and Complexity Analysis
 
-on: [push]
+on: push
 
 jobs:
   analyze:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run Churn vs Complexity Analysis
-      uses: ./action
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run analysis
+      run: python analyzer.py
+
+    - name: Upload graph
+      uses: actions/upload-artifact@v2
+      with:
+        name: complexity-vs-churn
+        path: complexity_vs_churn.png
