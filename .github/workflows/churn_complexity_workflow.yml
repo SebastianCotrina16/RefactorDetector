@@ -1,0 +1,14 @@
+name: Churn vs Complexity Analysis
+
+on: [push]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run Churn vs Complexity Analysis
+      uses: ./action
