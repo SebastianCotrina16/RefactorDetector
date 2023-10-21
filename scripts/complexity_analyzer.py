@@ -13,7 +13,7 @@ class ComplexityAnalyzer:
             data = line.split()
             if len(data) == 6:
                 file_location = data[-1]
-                file_name = file_location.split('@')[-1]
+                file_name = file_location.split('@')[-1].replace('\\', '/').lstrip('./')
                 ccn = data[1]
                 if ccn.isdigit():
                     complexities[file_name] = ccn

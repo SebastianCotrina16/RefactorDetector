@@ -15,6 +15,9 @@ class Analyzer:
         plt.xlabel('Churn (# Commits for each file)')
         plt.ylabel('Cyclomatic Complexity')
         plt.title('Churn vs Cyclomatic Complexity')
+
+        for file,churn_value,complexity in zip(files, x, y):
+            plt.annotate(file, (churn_value, complexity))
         plt.savefig('complexity_vs_churn.png')
 
 if __name__ == '__main__':
