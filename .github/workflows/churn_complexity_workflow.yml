@@ -15,4 +15,8 @@ jobs:
       with:
         python-version: 3.11
     - name: Run analysis
-      run: docker pull sebastiancotrina/refactorthis:latest && docker run -v $PWD:/project sebastiancotrina/refactorthis:latest
+      run: docker pull sebastiancotrina/refactorthis:latest && docker run --name refactorthis -v $PWD:/project sebastiancotrina/refactorthis:latest
+    - name: Execute
+      run:  docker exec refactorthis ../entrypoint.sh
+    - name: Get Image
+      run: docker exec refactorthis mv complexity_vs_churn.png /project
