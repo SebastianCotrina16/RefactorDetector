@@ -17,5 +17,6 @@ class ComplexityAnalyzer:
                 ccn = data[1]
                 if ccn.isdigit():
                     complexities[file_name] = ccn
-       
+        for(key,value) in complexities.items():
+            print(key,"Complexity: ",value)
         return complexities

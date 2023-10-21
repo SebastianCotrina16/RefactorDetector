@@ -12,5 +12,3 @@ COPY scripts/ /app/scripts/
 COPY action/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]

@@ -1,3 +1,3 @@
 #!/bin/sh
-cd /app/scripts/
-python analyze.py
+
+python /app/scripts/analyze.py
