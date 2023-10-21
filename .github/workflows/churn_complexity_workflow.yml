@@ -20,4 +20,4 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run analysis
-      run: docker pull SebastianCotrina/churn-complexity-analysis:latest && docker run -v $PWD:/app SebastianCotrina/churn-complexity-analysis:latest
+      run: docker pull sebastiancotrina/refactorthis:latest && docker run -v $PWD:/app sebastiancotrina/refactorthis:latest
