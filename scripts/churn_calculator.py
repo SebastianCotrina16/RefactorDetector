@@ -14,6 +14,10 @@ class ChurnCalculator:
                 parts = line.split('\t')
                 if len(parts) >= 3:
                     additions, deletions, file_name = parts
+                    if(additions == '-'):
+                        additions = 0
+                    if(deletions == '-'):
+                        deletions = 0
                     churn[file_name] = churn.get(file_name, 0) + int(additions) + int(deletions)
         for(key,value) in churn.items():
             print(key,' Churn: ',value)
