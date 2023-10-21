@@ -20,3 +20,7 @@ class ComplexityAnalyzer:
                 
 
         return complexities
+if(__name__ == '__main__'):
+    complexities = ComplexityAnalyzer.get_cyclomatic_complexity()
+    for file_name, ccn in complexities.items():
+        print(f'Archivo: {file_name}, CCN: {ccn}')

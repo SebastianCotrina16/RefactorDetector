@@ -20,7 +20,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run analysis
-      run: python analyzer.py
+      run: python scripts/analyzer.py
 
     - name: Upload graph
       uses: actions/upload-artifact@v2
