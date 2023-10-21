@@ -20,10 +20,4 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run analysis
-      run: python scripts/analyzer.py
-
-    - name: Upload graph
-      uses: actions/upload-artifact@v2
-      with:
-        name: complexity-vs-churn
-        path: complexity_vs_churn.png
+      run: docker pull SebastianCotrina/churn-complexity-analysis:latest && docker run -v $PWD:/app SebastianCotrina/churn-complexity-analysis:latest

@@ -4,7 +4,7 @@ class ChurnCalculator:
 
     @staticmethod
     def get_churn():
-        result = subprocess.run(["git", "log", "--numstat", "--pretty=\"%H\""], capture_output=True, text=True)
+        result = subprocess.run(["git", "log", "--numstat", "--pretty=\"%H\""], capture_output=True, text=True, cwd='/app')
         output = result.stdout.splitlines()
 
         churn = {}
@@ -15,10 +15,5 @@ class ChurnCalculator:
                 if len(parts) >= 3:
                     additions, deletions, file_name = parts
                     churn[file_name] = churn.get(file_name, 0) + int(additions) + int(deletions)
-                
+        
         return churn
-
-if __name__ == '__main__':
-    churn = ChurnCalculator.get_churn()
-    for file_name, churn_value in churn.items():
-        print(f'Archivo: {file_name}, Churn: {churn_value}')

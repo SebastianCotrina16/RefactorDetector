@@ -4,7 +4,7 @@ class ComplexityAnalyzer:
 
     @staticmethod
     def get_cyclomatic_complexity():
-        result = subprocess.run(['lizard', '-x', './venv/*'], stdout=subprocess.PIPE, text=True)
+        result = subprocess.run(['lizard', '-x', './venv/*'], stdout=subprocess.PIPE, text=True,cwd="/app")
         output = result.stdout.splitlines()
 
         complexities = {}
@@ -17,10 +17,5 @@ class ComplexityAnalyzer:
                 ccn = data[1]
                 if ccn.isdigit():
                     complexities[file_name] = ccn
-                
-
+       
         return complexities
-if(__name__ == '__main__'):
-    complexities = ComplexityAnalyzer.get_cyclomatic_complexity()
-    for file_name, ccn in complexities.items():
-        print(f'Archivo: {file_name}, CCN: {ccn}')
