@@ -4,7 +4,7 @@ class ChurnCalculator:
 
     @staticmethod
     def get_churn():
-        result = subprocess.run(["git", "log", "--numstat", "--pretty=\"%H\""], capture_output=True, text=True, cwd='/app')
+        result = subprocess.run(["git", "log", "--numstat", "--pretty=\"%H\""], capture_output=True, text=True, cwd='/project')
         output = result.stdout.splitlines()
 
         churn = {}

@@ -4,7 +4,7 @@ class ComplexityAnalyzer:
 
     @staticmethod
     def get_cyclomatic_complexity():
-        result = subprocess.run(['lizard', '-x', './venv/*'], stdout=subprocess.PIPE, text=True,cwd="/app")
+        result = subprocess.run(['lizard', '-x', './venv/*'], stdout=subprocess.PIPE, text=True,cwd="/project")
         output = result.stdout.splitlines()
 
         complexities = {}
