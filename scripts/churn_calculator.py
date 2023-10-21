@@ -10,14 +10,14 @@ class ChurnCalculator:
         churn = {}
 
         for line in output:
-            if not line.startswith('"'):
+            if not line.startswith('"') and "complexity_vs_churn.png" not in line:
                 parts = line.split('\t')
                 if len(parts) >= 3:
                     additions, deletions, file_name = parts
-                    print(parts)
                     churn[file_name] = churn.get(file_name, 0) + int(additions) + int(deletions)
                 
         return churn
+
 if __name__ == '__main__':
     churn = ChurnCalculator.get_churn()
     for file_name, churn_value in churn.items():
