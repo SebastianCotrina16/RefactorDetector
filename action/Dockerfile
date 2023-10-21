@@ -1,11 +1,13 @@
-FROM python:3.11
+FROM python:3.11-slim
 
-WORKDIR /action
+WORKDIR /app
 
-COPY ./scripts/analyze.py /action/
-COPY ./action/requirements.txt /action/
-COPY ./action/entrypoint.sh /action/
+COPY action/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN pip install -r requirements.txt
+COPY scripts/ /app/scripts/
 
-ENTRYPOINT ["/action/entrypoint.sh"]
+COPY action/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

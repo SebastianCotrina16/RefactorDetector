@@ -1,1 +1,2 @@
-python /action/analyze.py
+cd /app/scripts/
+python analyze.py
