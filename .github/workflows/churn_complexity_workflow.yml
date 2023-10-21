@@ -14,9 +14,18 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.11
-    - name: Run analysis
-      run: docker pull sebastiancotrina/refactorthis:latest && docker run --name refactorthis -v $PWD:/project sebastiancotrina/refactorthis:latest
-    - name: Execute
-      run:  docker exec refactorthis ../entrypoint.sh
-    - name: Get Image
-      run: docker exec refactorthis mv complexity_vs_churn.png /project
+
+    - name: Pull Docker Image
+      run: docker pull sebastiancotrina/refactorthis:latest
+
+    - name: Start Docker Container
+      run: docker run -d --name refactorthis -v $PWD:/project sebastiancotrina/refactorthis:latest tail -f /dev/null
+
+    - name: Execute Analysis
+      run: docker exec refactorthis ../entrypoint.sh
+
+    - name: Retrieve Image
+      run: docker cp refactorthis:/app/complexity_vs_churn.png $PWD/complexity_vs_churn.png
+
+    - name: Cleanup
+      run: docker stop refactorthis && docker rm refactorthis
