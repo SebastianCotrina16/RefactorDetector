@@ -1,0 +1,17 @@
+import subprocess
+
+class ChurnCalculator:
+
+    @staticmethod
+    def get_churn():
+        result = subprocess.run(["git", "log", "--numstat", "--pretty=\"%H\""], capture_output=True, text=True)
+        output = result.stdout.splitlines()
+
+        churn = {}
+
+        for line in output:
+            if not line.startswith('"'):
+                additions, deletions, file_name = line.split('\t')
+                churn[file_name] = churn.get(file_name, 0) + int(additions) + int(deletions)
+                
+        return churn
