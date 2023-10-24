@@ -16,4 +16,4 @@ jobs:
         python-version: 3.11
 
     - name: Pull Docker Image
-      run: docker pull sebastiancotrina/refactorthis:latest
+      run: docker pull sebastiancotrina/refactordetector:latest
