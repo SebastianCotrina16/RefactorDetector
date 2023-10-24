@@ -7,7 +7,7 @@ class Analyzer:
 
     @staticmethod
     def plot_graph(complexities, churn):
-        files = list(complexities.keys())
+        files = [file for file in complexities if file in churn]
         x = [churn[file] for file in files]
         y = [complexities[file] for file in files]
 
