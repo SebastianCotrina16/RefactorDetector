@@ -20,8 +20,13 @@ class Analyzer:
         plt.ylabel('Cyclomatic Complexity')
         plt.title('Churn vs Cyclomatic Complexity')
 
-        texts = [plt.text(churn_value, complexity, file, ha='center', va='center') for file, churn_value, complexity in zip(files, x, y)]
-        
+        texts = []
+        for file, churn_value, complexity in zip(files, x, y):
+            t = plt.text(float(churn_value), float(complexity), file, ha='center', va='center')
+            texts.append(t)
+        adjust_text(texts)
+
+
         adjust_text(texts)
 
         plt.savefig('complexity_vs_churn.png')
