@@ -9,8 +9,8 @@ class Analyzer:
     @staticmethod
     def plot_graph(complexities, churn):
         files = [file for file in complexities if file in churn]
-        x = [churn[file] for file in files]
-        y = [complexities[file] for file in files]
+        x = [float(churn[file]) for file in files]
+        y = [float(complexities[file]) for file in files]
 
         plt.figure(figsize=(12, 8))
 
